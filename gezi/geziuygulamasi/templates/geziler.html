@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Tüm geziler</h3></div>
+<hr><br>
+
+<table>
+    <thead>
+        <tr>
+            <th>Gezi adı:</th>
+            <th>Günler:</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for gezi in geziler %}
+        <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>{{ gezi.gezi|title }}</th>
+            <td>{{ gezi.gece_sayisi }} Gece {{ gezi.gun_sayisi }} Gün</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

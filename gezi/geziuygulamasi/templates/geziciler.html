@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Tüm geziciler:</h3></div>
+<hr><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ad Soyad:</th>
+                <th>Kimlik:</th>
+                <th>Dil:</th>
+            </tr>
+        </thead>
+    {% for gezici in geziciler %}
+
+        <tbody>
+            <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+                <td><a href="{% url 'gezici' gezici.slug %}">{{gezici.ad|title}} {{gezici.soyad|title}}</td>
+                <td>{{ gezici.kimlik_no }}</td>
+                <td>
+                {% for dil in gezici.dil.all %}
+                    {{ dil }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+
+    {% endfor %}
+    </table>
+
+{% endblock %}

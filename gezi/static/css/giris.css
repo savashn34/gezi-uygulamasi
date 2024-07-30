@@ -1,0 +1,92 @@
+@import 'reset.css';
+
+body {
+    background-color: #333;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    color: white;
+}
+
+.kap {
+    width: auto;
+    background-color: white;
+    margin: 10% 40%;
+    border: 6px solid black;
+    border-radius: 1%;
+    padding-bottom: 2%;
+}
+
+h1 {
+    padding-bottom: 8%;
+    padding-top: 3%;
+    font-size: 51px;
+    font-style: bold;
+    color: white;
+    background-color: #007bff;
+}
+
+.giris {
+    width: 100%;
+    padding-top: 5%;
+}
+
+label {
+    font-size: 21px;
+}
+
+input[type="text"],
+input[type="password"],
+
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+
+    .kap {
+        margin: 10% 15%;
+    }
+
+    h1 {
+        font-size: xx-large;
+    }
+
+    .button {
+        width: auto;
+    }
+
+}

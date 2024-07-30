@@ -1,0 +1,21 @@
+<ul>
+    {% if user.is_superuser %}
+        <li><a href="{% url 'baslangic' %}">Başlangıç</a></li>
+        <li><a href="{% url 'admin:index' %}">Yönetim</a></li>
+        <li><a href="{% url 'takimlar' %}">Takımlar</a></li>
+        <li><a href="{% url 'geziler' %}">Geziler</a></li>
+        <li><a href="{% url 'geziciler' %}">Geziciler</a></li>
+        <li><a href="{% url 'gezginler' %}">Gezginler</a></li>
+        <li><a href="{% url 'gecmis' %}">Geçmiş etkinlikler</a></li>
+        <li><a href="{% url 'gelecek' %}">Gelecek etkinlikler</a></li>
+        <li><a href="{% url 'password_change' %}">Şifreyi değiştir</a></li>
+        {% if user_agent.is_mobile %}<li><a href="{% url 'cikis' %}">Oturumu kapat</a></li>{% endif %}
+    {% else %}
+        <li><a href="{% url 'baslangic' %}">Başlangıç</a></li>
+        <li><a href="{% url 'gezici' slug=user.username %}">Bilgilerim</a></li>
+        <li><a href="{% url 'gecmis' %}">Geçmiş etkinliklerim</a></li>
+        <li><a href="{% url 'gelecek' %}">Gelecek etkinliklerim</a></li>
+        <li><a href="{% url 'password_change' %}">Şifreyi değiştir</a></li>
+        {% if user_agent.is_mobile %}<li><a href="{% url 'cikis' %}">Oturumu kapat</a></li>{% endif %}
+    {% endif %}
+</ul>

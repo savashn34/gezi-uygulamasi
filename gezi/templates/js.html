@@ -1,0 +1,11 @@
+<script type="text/javascript">
+
+    var baslangicUrl = "{% url 'baslangic' %}".replace(/&amp;/g, '&');
+    document.getElementById("baslangicBaglanti").href = baslangicUrl;
+
+    var adminUrl = "{% url 'admin:index' %}".replace(/&amp;/g, '&');
+    document.getElementById("adminBaglanti").href = adminUrl;
+
+    var takimlarUrl = "{% url 'takimlar' %}".replace(/&amp;/g, '&');
+    document.getElementById("takimlarBaglanti").href = takimlarUrl;
+</script>

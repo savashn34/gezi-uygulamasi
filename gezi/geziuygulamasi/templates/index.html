@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if not user_agent.is_mobile %}
+{% include "partials/_suzgec.html" %}
+{% endif %}
+
+<div class="icerik">
+    <h3>Tüm Etkinlikler:</h3>
+    <hr>
+</div>
+
+    <div class="icerik">
+        <form class="search-form" method="GET" action="{% url 'baslangic' %}">
+            <input class="search-input" type="text" name="q" placeholder="Takım adıyla ara">
+            <button class="search-button" type="submit">Ara</button>
+        </form>
+        <br>
+        <p>Toplam veri sayısı: {{ documents.count }}</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Takım adı:</th>
+                <th>Başlangıç günü:</th>
+                <th>Gezi:</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in page_obj %}
+
+            <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+                <th><a href="{% url 'takim' document.slug %}">{{ document.takim_adi|upper }}</a></th>
+                <td>{{ document.baslangic.date }}</td>
+                <td>{{ document.gezi.gezi|title }}</td>
+            </tr>
+
+        {% empty %}
+            <div class="icerik"><p>İlgili aralıkta etkinlik bulunamadı.</p></div>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<br><br><br>
+
+{% include "partials/_page.html" %}
+
+<br><br><br>
+
+{% if user_agent.is_mobile %}
+{% include "partials/_suzgec.html" %}
+{% endif %}
+{% endblock %}

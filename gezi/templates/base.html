@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
+    <title>Gezi Yönetimi</title>
+</head>
+<body>
+    <header>
+        <h1 id="ad"><a href="{% url 'baslangic' %}">Gezi Yönetimi</a></h1>
+        {% if user_agent.is_mobile %}
+
+        <div class='sidenav' id='sidebarNav'>
+            <a href='javascript:void(0)' class='closeBtn' onclick='closeNav()'>&times;</a>
+            {% include "partials/_gezinme.html" %}
+        </div>
+        <span class='open' onclick='openNav()'>&#9776;</span>
+
+        {% else %}
+        <h2 id="secenekler">
+            {% if user.is_authenticated %}
+                {% if user.get_full_name %}
+                    <a href="{% url 'gezici' slug=user.username %}">{{ user.get_full_name|title }}</a>
+                {% else %}
+                    <a href="{% url 'admin:index' %}">{{ user.username }}</a>
+                {% endif %}
+                &emsp;
+                <a href="{% url "cikis" %}">Oturumu kapat</a></li>
+            {% elif not user.is_authenticated %}
+                <a href="{% url "giris" %}">Giriş yap</a>
+            {% endif %}
+        {% endif %}
+    </header>
+    <div class="govde">
+        {% if not user_agent.is_mobile %}
+            {% if user.is_authenticated %}
+            <div class="gezinme">
+                {% include "partials/_gezinme.html" %}
+            </div>
+            {% endif %}
+        {% endif %}
+
+    {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <h4>Turizm işletmeleri için geliştirilmiş bir içerik yönetim uygulamasının önizleme sürümüdür. Uygulamanın gerçek sürümü için iletişim: savashn34@gmail.com &copy; 2024</h4>
+    </footer>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

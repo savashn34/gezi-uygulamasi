@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Takım bilgileri:</h3></div><hr><br>
+
+{% for t in takim %}
+
+    <table>
+        <tbody>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Takım Adı:</th>
+            <td>{{ t.takim_adi|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Gezi:</th>
+            <td>{{ t.gezi|title }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Başlangıç günü:</th>
+            <td>{{ t.baslangic }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Bitiş günü:</th>
+            <td>{{ t.bitis }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Gezicisi:</th>
+            <td>{{ t.gezicisi|title }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Gidiş Uçağı:</th>
+            <td>{{ t.gidis_ucagi|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Uçuş No (Gidiş):</th>
+            <td>{{ t.gidis_ucus_no|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Kalkış Yeri (Gidiş):</th>
+            <td>{{ t.gidis_ucak_kalkis_yeri|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Kalkış Saati (Gidiş):</th>
+            <td>{{ t.gidis_ucak_kalkis }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>İniş Yeri (Gidiş):</th>
+            <td>{{ t.gidis_ucak_inis_yeri|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>İniş Saati (Gidiş):</th>
+            <td>{{ t.gidis_ucak_inis }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Dönüş Uçağı:</th>
+            <td>{{ t.donus_ucagi|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Uçuş No (Dönüş):</th>
+            <td>{{ t.donus_ucus_no|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Kalkış Yeri (Dönüş):</th>
+            <td>{{ t.donus_ucak_kalkis_yeri|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>Kalkış Saati (Dönüş):</th>
+            <td>{{ t.donus_ucak_kalkis }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>İniş Yeri (Dönüş):</th>
+            <td>{{ t.donus_ucak_inis_yeri|upper }}</td>
+          </tr>
+          <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th>İniş Saati (Dönüş):</th>
+            <td>{{ t.donus_ucak_inis }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+{% endfor %}
+
+<br><br><br>
+<div class="icerik"><h3>Etkinlik bilgileri:</h3></div><hr><br>
+
+<table>
+  <thead>
+    <th>Gün saat:</th>
+    <td>Eylem:</td>
+    <td>Ek:</td>
+    </thead>
+    <tbody>
+
+{% for e in etkinlikler %}
+
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>{{ e.etkinlik_suresi }}</th>
+        <td>{{ e.etkinlik|capfirst }}</td>
+        <td>
+          {% if e.yemek_yeri %} {{ e.yemek_yeri|title }}
+          {% elif e.arac_plakasi %} {{ e.arac_plakasi|upper }} {{ e.arac_kurulusu|title }}
+          {% elif e.konaklama_yeri %} {{ e.konaklama_yeri|title }}
+          {% elif e.ucus_alani %} {{ e.ucus_alani|upper }}
+          {% endif %}
+        </td>
+      </tr>
+
+{% endfor %}
+
+  </tbody>
+</table>
+
+{% if user.is_authenticated %}
+
+<br><br><br>
+<div class="icerik"><h3>Katılımcıların bilgileri:</h3></div><hr><br>
+
+<table>
+  <thead>
+    <th>Ad soyad:</th>
+    <td>İletişim:</td>
+  </thead>
+  <tbody>
+
+{% for gezgin in gezginler %}
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+          <th><a href="{% url 'gezgin' slug=gezgin.slug %}">{{ gezgin.ad|title}} {{gezgin.soyad|title }}</a></th>
+          <td>İletişim: {{ gezgin.telefon }}</td>
+      </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% if user_agent.is_mobile %}
+<div class="suzgecMobil">
+{% else %}
+<div class="suzgec">
+{% endif %}
+
+    <h4>SÜZGEÇ</h4><hr><br>
+
+    <form method="GET" action="">
+        <label for="start_date">Gün aralığı:</label><br>
+        <input type="date" id="start_date" name="start_date">
+        <input type="date" id="end_date" name="end_date">
+        <br><br>
+
+        <input type="radio" id="gelecek" name="gelecek" value="gelecek">
+        <label for="gelecek">Yalnızca gelecek etkinlikler</label><br>
+        <input type="radio" id="gecmis" name="gecmis" value="gecmis">
+        <label for="gecmis">Yalnızca geçmiş etkinlikler</label>
+        <br><br>
+
+        {% if user.is_superuser %}
+
+        <label for="gezici">Gezici:</label><br>
+        <select id="gezici" name="gezici">
+            <option value=""></option>
+            {% for gezici in geziciler %}
+            <option value="{{ gezici.id }}">{{ gezici|title }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        {% endif %}
+
+        <label for="geziler">Gezi:</label><br>
+        <select id="geziler" name="geziler">
+            <option value=""></option>
+            {% for gezi in geziler %}
+                <option value="{{ gezi.id }}">{{ gezi|title }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <button class="suzgecSil" type="button" onclick="window.location.href='{% url 'baslangic' %}'">Seçenekleri sil</button>
+        <br><br>
+        <button class="search-button" type="submit">Seçenekleri uygula</button>
+    </form>
+
+</div>

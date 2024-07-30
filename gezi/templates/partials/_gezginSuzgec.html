@@ -1,0 +1,55 @@
+<div class="suzgec">
+
+    <h4>SÜZGEÇ</h4><hr><br>
+
+    <form method="GET" action="">
+        <label for="start_date">Gün aralığı:</label><br>
+        <input type="date" id="start_date" name="start_date">
+        <input type="date" id="end_date" name="end_date">
+        <br><br>
+
+        <label for="ad">Ad:</label><br>
+        <input type="text" id="ad" name="ad">
+        <br><br>
+
+        <label for="soyad">Soyad:</label><br>
+        <input type="text" id="soyad" name="soyad">
+        <br><br>
+
+        <label for="uyruk">Uyruk:</label><br>
+        <select id="uyruk" name="uyruk">
+            <option value=""></option>
+            {% for uyruk in uyruklar %}
+                <option value="{{ uyruk.uyruk }}">{{ uyruk.uyruk|title }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="takim">Takım:</label><br>
+        <input type="text" id="takim" name="takim">
+        <br><br>
+
+        <label for="odeme">Ödeme durumu:</label><br>
+        <select id="odeme" name="odeme">
+            <option value=""></option>
+            {% for odeme in gezginler_odeme %}
+                <option value="{{ odeme.odendi }}">{{ odeme.odendi }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="gezi">Gezi:</label><br>
+        <select id="gezi" name="gezi">
+            <option value=""></option>
+            {% for gezi in geziler %}
+                <option value="{{ gezi.gezi }}">{{ gezi|title }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <button class="suzgecSil" type="button" onclick="window.location.href='{% url 'gezginler' %}'">Seçenekleri sil</button>
+        <br><br>
+        <button class="search-button" type="submit">Seçenekleri uygula</button>
+    </form>
+
+</div>

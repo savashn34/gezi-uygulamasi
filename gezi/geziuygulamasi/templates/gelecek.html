@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Gelecek Etkinlikler</h3></div>
+<hr><br>
+
+{% if filter %}
+
+<div class="icerik">
+    <form method="get">
+        <label for="id_baslangic_min">Başlangıç Aralığı:&nbsp;&nbsp;&nbsp;</label>
+        <input type="date" name="baslangic_min" id="id_baslangic_min">
+        <label for="id_baslangic_max"> / </label>
+        <input type="date" name="baslangic_max" id="id_baslangic_max">
+        <button type="submit">Süz</button>
+    </form>
+</div>
+
+{% if baslangic_min and baslangic_max %}
+    <div class="icerik">{{ baslangic_min }} ile {{ baslangic_max }} aralığı arasındaki etkinlikler gösterilmektedir.</div>
+{% endif %}
+
+{% for etkinlik in filter.qs %}
+
+    <table>
+        <tbody>
+            <tr>
+                <th><a href="{% url 'takim' etkinlik.slug %}">{{ etkinlik|upper }}</a></th>
+                <td>Başlangıç günü: {{ etkinlik.baslangic|date:"d/m/Y" }}</td>
+                <td>Bitiş günü: {{ etkinlik.bitis|date:"d/m/Y" }}</td>
+            </tr>
+            <br>
+        </tbody>
+    </table>
+{% empty %}
+    <div class="icerik"><p>İlgili aralıkta etkinlik bulunamadı.</p></div>
+{% endfor %}
+{% else %}
+
+{% for etkinlik in gelecek_etkinlikler %}
+
+<table>
+    <tbody>
+        <tr>
+            <th><a href="{% url 'takim' etkinlik.slug %}">{{ etkinlik|upper }}</a></th>
+            <td>Başlangıç günü: {{ etkinlik.baslangic|date:"d/m/Y" }}</td>
+            <td>Bitiş günü: {{ etkinlik.bitis|date:"d/m/Y" }}</td>
+        </tr>
+        <br>
+    </tbody>
+</table>
+    
+{% endfor %}
+{% endif %}
+{% endblock %}

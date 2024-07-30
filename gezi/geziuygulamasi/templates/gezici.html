@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Gezicinin bilgileri:</h3></div>
+
+{% for g in gezici %}
+
+<table>
+    <tbody>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Ad:</th>
+        <td>{{ g.ad|title }} {% if g.gobek_adi %}{{ g.gobek_adi|title }}{% endif %}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Soyad:</th>
+        <td>{{ g.soyad|title }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Diller:</th>
+        <td>{% with dil_dizisi=g.dil.all %}{% for dil in dil_dizisi %}{{ dil }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endwith %}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Cinsiyet:</th>
+        <td>{{ g.cinsiyet|title }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Doğum:</th>
+        <td>{{ g.dogum }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Uyruk:</th>
+        <td>{{ g.uyruk|title }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Kimlik:</th>
+        <td>{{ g.kimlik_no }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>E-posta:</th>
+        <td>{{ g.e_posta }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Telefon:</th>
+        <td>{{ g.telefon }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Yakınının adı:</th>
+        <td>{{ g.yakin_ad|title }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Yakınlık durumu:</th>
+        <td>{{ g.yakinlik|capfirst }}</td>
+      </tr>
+      <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+        <th>Yakınının telefonu:</th>
+        <td>{{ g.yakin_tel }}</td>
+      </tr>
+    </tbody>
+</table>
+{% endfor %}
+{% if user.is_superuser %}
+<br><br><br>
+<div class="icerik"><h4>Geçmiş etkinlikleri:</h4></div><hr><br>
+
+{% for t in takimlar %}
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Takım adı:</th>
+        <td>{{ t|upper }}</td>
+        <td>{{ t.gezi|title }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endfor %}
+{% endif %}
+{% endblock %}

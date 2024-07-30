@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik">
+    <form class="search-form" method="GET" action="{% url 'takimlar' %}">
+        <input class="search-input" type="text" name="q" placeholder="Takım adıyla ara">
+        <button class="search-button" type="submit">Ara</button>
+    </form>
+</div>
+
+<br>
+<p class="icerik">Veriler belge başına yirmişerli olarak gösterilmektedir. Daha ayrıntılı aramalar için yönetim alanını kullanınız.</p>
+
+<table>
+    <thead>
+        <th>Takım adı:</th>
+        <td>Gezi:</td>
+    </thead>
+    <tbody>
+
+{% for takim in page_obj %}
+        <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th><h3><a href="{% url 'takim' takim.slug %}">{{ takim.takim_adi|upper }}</a></h3></th>
+            <td>{{ takim.gezi|title }}</td>
+        </tr>
+
+{% endfor %}
+    </tbody>
+</table>
+
+<br><br><br>
+<div class="icerik">
+
+{% if page_obj.has_previous %}
+    <a href="?page=1">İlk Sayfa</a>
+    <a href="?page={{ page_obj.previous_page_number }}">Önceki</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+    <a href="?page={{ num }}">{{ num }}</a>
+{% endfor %}
+
+<span>Sayfa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Sonraki</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">Son Sayfa</a>
+{% endif %}
+
+</div>
+
+{% endblock %}

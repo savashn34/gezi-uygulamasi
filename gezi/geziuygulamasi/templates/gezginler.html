@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "partials/_gezginSuzgec.html" %}
+
+<div class="icerik">
+    <h3>Tüm Gezginler:</h3>
+    <hr>
+</div>
+
+<div class="icerik">
+    <form class="search-form" method="GET" action="{% url 'gezginler' %}">
+        <input class="search-input" type="text" name="q" placeholder="Kimlik numarasıyla ara">
+        <button class="search-button" type="submit">Ara</button>
+    </form>
+    <br>
+    <p>Toplam veri sayısı: {{ gezginler.count }}</p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Ad Soyad:</th>
+            <th>Uyruk:</th>
+            <th>Kimlik:</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for document in page_obj %}
+
+        <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <th><a href="{% url 'gezgin' document.slug %}">{{ document.ad|title }} {{ document.soyad|title }}</a></th>
+            <td>{{ document.uyruk|title }}</td>
+            <td>{{ document.pasaport_no|upper }}</td>
+        </tr>
+
+    {% empty %}
+        <div class="icerik"><p>İlgili aralıkta etkinlik bulunamadı.</p></div>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br><br><br>
+
+{% include "partials/_page.html" %}
+{% endblock content %}

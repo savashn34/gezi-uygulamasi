@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/giris.css' %}">
+    <title>Giriş yap</title>
+</head>
+<body>
+
+<div class="kap">
+
+    <div class="tepe"><h1>Giriş yap</h1></div>
+    <form action="{% url 'giris' %}" method="POST">
+        {% csrf_token %}
+        {% if error %}
+            {{ error }}
+        {% endif %}
+
+        <div class="giris">
+            <label for="username">Kullanıcı adı</label><br><br>
+            <input type="text" name="username">
+        </div>
+        <div class="giris">
+            <label for="password">Şifre</label><br><br>
+            <input type="password" name="password">
+        </div>
+        <br>
+        <input type="submit" value="Oturum aç" class="button">
+    </form>
+</div>
+
+<p>Yönetici kullanıcı adı: admin</p>
+<p>Yönetici şifresi: admin123</p>
+<br>
+<p>Çalışan kullanıcı adı: yildizcicek</p>
+<p>Çalışan şifresi: yc123123</p>
+<br>
+<p>İkinci çalışan kullanıcı adı: svetlanatonka</p>
+<p>İkinci çalışan şifresi: st123123</p>
+</body>
+</html>

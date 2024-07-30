@@ -1,0 +1,313 @@
+@import 'reset.css';
+
+body {
+    background-color: rgb(196, 194, 194);
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    display: flex;
+    background-color: rgb(7, 3, 41);
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: xx-large;
+    margin: 1% 10%;
+}
+
+h2 {
+    margin: 1% 15%;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+h4 {
+    font-size: larger;
+}
+
+#ad {
+    width: 60%;
+    text-align: left;
+    justify-content: left;
+}
+
+#secenekler {
+    width: 70%;
+    text-align: right;
+    justify-content: right;
+    font-size: 24px;
+}
+
+.icerik {
+    font-size: larger;
+    padding: 1% 1%;
+    margin: 0 20%;
+}
+
+.govde {
+    margin: 2% 0;
+}
+
+.suzgecMobil {
+    width: auto;
+    margin: 1% 50px;
+    padding: 2% 2%;
+    background-color: rgb(44, 43, 43);
+    font-size: medium;
+    color: white;
+    line-height: 1.5;
+}
+
+.suzgec {
+    /* height: 45%; */
+    width: 10%;
+    margin-top: 65px;
+    right: 0;
+    padding: 2% 2%;
+    line-height: 1.5;
+    background-color: rgb(44, 43, 43);
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: medium;
+    color: white;
+}
+
+.gezinme {
+    /* height: 45%; */
+    width: 10%;
+    margin-top: 65px;
+    padding: 2% 2%;
+    line-height: 2;
+    background-color: rgb(44, 43, 43);
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: large;
+}
+
+.gezinme a {
+    color: white;
+    text-decoration: none;
+    transition: font-size 0.2s ease;
+}
+
+.gezinme a:hover {
+    text-decoration: underline;
+    font-size: 110%;
+}
+
+table {
+    margin: 0 20%;
+    width: 60%;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+}
+
+thead {
+    border-bottom: 2.5px solid white;
+}
+
+thead th {
+    font-weight: 500;
+}
+
+tbody tr {
+    border-bottom: 2px solid rgb(30, 30, 30);
+}
+
+tbody a {
+    font-weight: 400;
+    color: white;
+}
+
+.tr-hover {
+    background-color: rgb(20, 20, 20);
+    font-size: 105%;
+    transition: background-color 0.3s ease, font-size 0.3s ease;
+}
+
+th {
+    font-weight: 700;
+    border: 1px solid black;
+    padding: 1% 3%;
+    width: 20%;
+    font-size: larger;
+}
+
+td {
+    border: 1px solid black;
+    padding: 1% 3%;
+    font-size: larger;
+    width: 15%;
+    text-align: center;
+}
+
+footer {
+    justify-content: center;
+    text-align: center;
+    margin-top: 40%;
+    margin-bottom: 0;
+    background-color: rgb(7, 3, 41);
+    padding: 1% 10%;
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.suzgec .search-button {
+    color: white;
+    background-color: rgb(44, 43, 43);
+    border: 1.5px solid #007bff;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.suzgecSil {
+    color: white;
+    background-color: rgb(44, 43, 43);
+    border: 1.5px solid red;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.suzgecSil:hover {
+    background-color: red;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-top: 100px;
+    background-color: #111;
+    z-index: 999;
+    transition: 0.5s;
+    overflow-x: hidden;
+}
+
+.sidenav a {
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    color: #aaa;
+    padding: 8px 8px 8px 35px;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closeBtn {
+    position: absolute;
+    top: 5%;
+    right: 20px;
+    font-size: 36px;
+}
+
+.open {
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+
+    .icerik {
+        margin: 30px 10%;
+    }
+
+    table {
+        width: 85%;
+        margin: auto;
+        font-size: 11px;
+    }
+    
+    th {
+        padding: 2% 2%;
+        width: auto;
+        font-weight: 500;
+    }
+    
+    td {
+        padding: 1% 0;
+        width: 30%;
+    }
+
+    #ad {
+        font-size: 21px;
+    }
+
+    #secenekler {
+        font-size: 19px;
+    }
+
+    .gezinme {
+        width: 15%;
+        margin-top: 0;
+    }
+
+    .suzgec {
+        width: 15%;
+        margin-top: 0;
+    }
+
+    footer {
+        font-size: 16px;
+    }
+
+}

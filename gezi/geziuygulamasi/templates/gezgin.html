@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="icerik"><h3>Katılımcı bilgileri:</h3></div><hr><br>
+
+{% for g in gezgin %}
+
+<table>
+    <tbody>
+        <tr>
+            <th>Adı:</th>
+            <td>{{ g.ad|title }}</td>
+        </tr>
+        <tr>
+            <th>Soyadı:</th>
+            <td>{{ g.soyad|title }}</td>
+        </tr>
+        <tr>
+            <th>Cinsiyeti:</th>
+            <td>{{ g.cinsiyet|title }}</td>
+        </tr>
+        <tr>
+            <th>Doğum günü:</th>
+            <td>{{ g.dogum }}</td>
+        </tr>
+        <tr>
+            <th>Uyruğu:</th>
+            <td>{{ g.uyruk|title }}</td>
+        </tr>
+        <tr>
+            <th>Kimlik numarası:</th>
+            <td>{{ g.pasaport_no|upper }}</td>
+        </tr>
+        <tr>
+            <th>İletişim bağlantısı:</th>
+            <td>{{ g.e_posta }}</td>
+        </tr>
+        <tr>
+            <th>İletişim numarası:</th>
+            <td>{{ g.telefon }}</td>
+        </tr>
+        <tr>
+            <th>Adres</th>
+            <td>{{ g.adres|title }}</td>
+        </tr>
+        <tr>
+            <th>Yakınının adı soyadı:</th>
+            <td>{{ g.yakin_ad|title }}</td>
+        </tr>
+        <tr>
+            <th>Yakınlık durumu:</th>
+            <td>{{ g.yakinlik|capfirst }}</td>
+        </tr>
+        <tr>
+            <th>Yakınının iletişimi:</th>
+            <td>{{ g.yakin_tel }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
+
+{% if user.is_superuser %}
+
+<br><br><br>
+<div class="icerik"><h4>Ödeme bilgileri:</h4></div><hr><br>
+
+<table>
+    <thead>
+        <tr>
+            <th>Takım:</th>
+            <th>Tutar:</th>
+            <th>Ödeme yöntemi:</th>
+            <th>Ödeme:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for odeme in gezgin_odeme %}
+        <tr onmouseover="dizinBelirt(true, this)" onmouseout="dizinBelirt(false, this)">
+            <td><a href="{% url 'takim' odeme.takim.slug %}">{{ odeme.takim|upper }}</a></td>
+            <td>{{ odeme.tutar }} {{ odeme.doviz }}</td>
+            <td>{{ odeme.odeme_yontemi|title }}</td>
+            <td>{{ odeme.odendi }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+{% endblock %}
